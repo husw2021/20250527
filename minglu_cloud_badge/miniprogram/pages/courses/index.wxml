@@ -1,0 +1,15 @@
+<!-- pages/courses/index.wxml -->
+<view class="container">
+  <mp-button type="primary" bindtap="navigateToCreate" style="margin: 16px;">Create New Course</mp-button>
+  
+  <view wx:if="{{courses.length === 0}}" style="text-align: center; padding: 20px; color: #888;">
+    No courses yet. Create one!
+  </view>
+
+  <mp-cells wx:else title="Course List">
+    <mp-cell wx:for="{{courses}}" wx:key="_id" value="{{item.title}}" footer="{{item.status}}">
+      <view slot="title">{{item.title}}</view>
+      <view>Cycle: {{item.courseCycleDays}} days</view>
+    </mp-cell>
+  </mp-cells>
+</view>

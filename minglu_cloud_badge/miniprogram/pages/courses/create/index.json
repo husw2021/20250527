@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-uploader": "weui-miniprogram/uploader/uploader",
+    "mp-button": "weui-miniprogram/button/button",
+    "mp-icon": "weui-miniprogram/icon/icon"
+  },
+  "navigationBarTitleText": "Create Course"
+}
