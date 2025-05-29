@@ -1,0 +1,56 @@
+<!-- minglu_cloud_badge/miniprogram/pages/user-profile/index.wxml -->
+<view class="container">
+  <view class="profile-header" wx:if="{{userInfo}}">
+    <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="cover"></image>
+    <view class="nickname">{{userInfo.nickName || 'User Name'}}</view>
+    <view class="openid-display">My OpenID: {{userInfo.openid}}</view>
+    <button size="mini" bindtap="copyOpenID" wx:if="{{userInfo.openid}}">Copy My OpenID</button>
+  </view>
+  <view wx:else class="loading-state">Loading profile...</view>
+
+  <mp-cells title="My Account">
+     <mp-cell>
+         <view slot="title">Email (Example)</view>
+         <input placeholder="user@example.com" /> <!-- Placeholder for future fields -->
+     </mp-cell>
+  </mp-cells>
+
+  <mp-cells title="Friend Association">
+    <block wx:if="{{linkedFriendInfo}}">
+      <mp-cell>
+        <view slot="icon" wx:if="{{linkedFriendInfo.avatarUrl}}">
+             <image class="friend-avatar-small" src="{{linkedFriendInfo.avatarUrl}}" mode="aspectFill"></image>
+        </view>
+        <view>
+          <view class="linked-friend-name">Linked with: {{linkedFriendInfo.nickName || 'Friend'}}</view>
+          <view class="linked-friend-openid">Friend's OpenID: {{linkedFriendInfo.openid}}</view>
+        </view>
+      </mp-cell>
+      <view class="button-row">
+         <button type="default" size="mini" bindtap="navigateToFriendProfile">View Friend's Profile</button>
+         <button type="warn" size="mini" bindtap="unlinkFriend" style="margin-left: 10px;">Unlink Friend</button>
+      </view>
+    </block>
+    <block wx:else>
+      <mp-cell>
+        <view slot="title">Friend's OpenID</view>
+        <input class="weui-input" value="{{friendOpenidInput}}" bindinput="bindFriendOpenidInput" placeholder="Enter friend's OpenID to link"/>
+      </mp-cell>
+      <view class="weui-btn-area" style="padding: 0 16px 16px;">
+        <button type="primary" bindtap="linkFriendAttempt" disabled="{{!friendOpenidInput.length}}">Link with Friend</button>
+      </view>
+      <view class="info-text">Share your OpenID with your friend so they can link back to you!</view>
+    </block>
+  </mp-cells>
+  
+  <mp-cells title="My Rewards (Summary - Coming Soon)">
+     <!-- Placeholder for rewards summary -->
+     <mp-cell>
+         <view>You have X unclaimed rewards.</view>
+     </mp-cell>
+  </mp-cells>
+
+  <view style="padding:16px; margin-top: 20px;">
+     <button type="warn" bindtap="logout">Logout (Clear Local Data)</button>
+  </view>
+</view>

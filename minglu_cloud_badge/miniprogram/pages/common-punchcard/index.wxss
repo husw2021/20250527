@@ -1,0 +1,78 @@
+/* minglu_cloud_badge/miniprogram/pages/common-punchcard/index.wxss */
+.container { padding-bottom: 20px; }
+.checkin-type-selector {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+.type-button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #555;
+}
+.type-button.active {
+  background-color: #1aad19; /* WeChat green */
+  color: white;
+  border-color: #1aad19;
+}
+.form-section { margin-top: 10px; }
+.notes-textarea { height: 6em; width: 100%; padding: 8px 0; font-size: 15px; }
+.mood-selector { display: flex; flex-wrap: wrap; padding: 10px 0; }
+.mood-option {
+  padding: 8px 12px;
+  margin: 5px;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  font-size: 14px;
+}
+.mood-option.selected { background-color: #e6f7ff; border-color: #91d5ff; color: #096dd9;}
+.uploader-cell .weui-cell__bd { /* Give uploader more space if needed */
+    flex: 1; 
+}
+.file-preview { margin-top: 10px; }
+.file-preview-image { width: 100px; height: 100px; border-radius: 4px; }
+.audio-player {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.audio-controls button { margin-left: 10px; font-size:12px; padding: 2px 5px;}
+
+.history-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 16px 5px;
+  color: #333;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 20px;
+}
+.history-item {
+  padding: 10px 0; /* mp-cell will provide horizontal padding */
+}
+.history-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;}
+.history-item-type { font-size: 13px; color: #888; text-transform: capitalize;}
+.history-item-time { font-size: 12px; color: #aaa; }
+.history-item-content-text { font-size: 15px; color: #333; white-space: pre-wrap; margin-bottom: 5px;}
+.history-item-mood { font-size: 15px; color: #096dd9; }
+.history-item-image { width: 80px; height: 80px; border-radius: 4px; margin-top: 5px; }
+.history-item-tags { margin-top: 5px; }
+.tag {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.loading-state, .empty-state { text-align: center; padding: 40px 20px; color: #888; }
+.empty-image { width: 100px; height: 100px; margin-bottom: 15px; }
+.load-more-btn { margin: 15px 16px; }

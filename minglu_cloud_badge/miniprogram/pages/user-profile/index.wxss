@@ -1,0 +1,68 @@
+/* minglu_cloud_badge/miniprogram/pages/user-profile/index.wxss */
+.container {
+  padding-bottom: 20px;
+}
+.profile-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f8ff; /* Light blueish background */
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.nickname {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+.openid-display {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-break: break-all;
+}
+.mp-cells {
+  margin-top: 10px;
+}
+.friend-avatar-small {
+  width: 32px; /* Smaller avatar for friend display in cell */
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px; /* Space between avatar and name */
+}
+.linked-friend-name {
+  font-size: 15px;
+}
+.linked-friend-openid {
+    font-size: 12px;
+    color: #999;
+}
+.button-row {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  padding: 10px 16px;
+}
+.button-row button {
+  margin-left: 10px; /* Space between buttons */
+}
+.weui-input {
+  width: 100%;
+  text-align: right;
+}
+.info-text {
+  font-size: 12px;
+  color: #888;
+  padding: 10px 16px;
+  text-align: center;
+}
+.loading-state {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

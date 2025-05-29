@@ -1,0 +1,12 @@
+<!-- minglu_cloud_badge/miniprogram/components/card/index.wxml -->
+   <view class="custom-card {{customClass}}">
+     <view wx:if="{{title}}" class="card-header {{hasHeaderBorder ? 'card-header-bordered' : ''}}">
+       <text class="card-title">{{title}}</text>
+     </view>
+     <view class="card-body" style="{{bodyStyle}}">
+       <slot></slot> <!-- Default slot for main content -->
+     </view>
+     <view class="card-footer"> <!-- Always render footer slot container -->
+       <slot name="footer"></slot> <!-- Named slot for footer -->
+     </view>
+   </view>

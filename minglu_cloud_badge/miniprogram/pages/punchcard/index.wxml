@@ -1,0 +1,35 @@
+<!-- minglu_cloud_badge/miniprogram/pages/punchcard/index.wxml -->
+<view class="container">
+  <view class="header">
+    <view class="course-name-label">Course:</view>
+    <view class="course-name">{{courseName}}</view>
+  </view>
+
+  <mp-form id="punchcardForm">
+    <mp-cells title="Check-in Details">
+      <mp-cell>
+        <view slot="title">Check-in Date</view>
+        <picker mode="date" value="{{punchDate}}" bindchange="bindDateChange">
+          <view class="weui-input {{punchDate ? '' : 'picker-placeholder'}}">
+            {{punchDateFormatted}}
+          </view>
+        </picker>
+      </mp-cell>
+      <mp-cell>
+        <view slot="title">Notes (Optional)</view>
+        <textarea class="notes-textarea" value="{{notes}}" bindinput="bindNotesInput" placeholder="Add any notes for today's check-in..." maxlength="500"></textarea>
+      </mp-cell>
+    </mp-cells>
+
+    <view class="weui-btn-area" style="padding: 16px; margin-top:20px;">
+      <button type="primary" bindtap="submitCheckIn" loading="{{isLoading}}">Submit Check-in</button>
+    </view>
+  </mp-form>
+  
+  <celebration-animation 
+      show="{{showSuccessAnimation}}" 
+      bind:animationend="handleAnimationEnd" 
+      message="{{successMessage}}">
+  </celebration-animation>
+
+</view>

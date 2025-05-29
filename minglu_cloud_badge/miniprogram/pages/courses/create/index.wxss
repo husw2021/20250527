@@ -1,7 +1,0 @@
-/* pages/courses/create/index.wxss */
-.weui-input {
-  text-align: right;
-}
-textarea {
-  padding-top: 8px; /* Align with cell title */
-}

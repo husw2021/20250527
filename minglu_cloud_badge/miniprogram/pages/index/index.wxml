@@ -1,1 +1,25 @@
-<view>Hello Minglu!</view>
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+  <view wx:if="{{userInfo && userInfo.nickName}}" class="nickname">{{userInfo.nickName}}</view>
+  
+  <view wx:if="{{!userInfo}}" style="text-align: center; margin-top: 50px;">
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="handleUserLogin">
+      Login with WeChat
+    </button>
+  </view>
+  
+  <view wx:if="{{userInfo}}" style="text-align: center; margin-top: 20px;">
+    <text>Welcome, {{userInfo.nickName || 'User'}}!</text>
+    <button bindtap="navigateToUserProfile" style="margin-top: 10px;">View My Profile</button>
+    <button wx:if="{{userInfo.linkedUserId}}" bindtap="navigateToFriendProfile" style="margin-top: 10px;">View Friend's Profile</button>
+    <button wx:else bindtap="promptLinkFriend" style="margin-top: 10px;">Link to a Friend</button>
+  </view>
+
+  <!-- Other page content -->
+  <view style="margin-top: 30px; text-align:center;">
+     <button bindtap="navigateToCourseList" type="default">My Courses</button>
+     <button bindtap="navigateToBadgeList" type="default" style="margin-top:10px;">My Badges</button>
+     <button bindtap="navigateToCommonPunchcard" type="default" style="margin-top:10px;">General Check-in</button>
+  </view>
+</view>

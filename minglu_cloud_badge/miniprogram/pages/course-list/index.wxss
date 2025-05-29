@@ -1,0 +1,47 @@
+/* minglu_cloud_badge/miniprogram/pages/course-list/index.wxss */
+.container {
+  padding-bottom: 20px; /* Space for refresh button or general padding */
+}
+.loading-state, .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+}
+.loading-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.empty-image {
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  margin-bottom: 15px;
+}
+.empty-text {
+  font-size: 14px;
+}
+.course-list-slideview {
+  margin-top: 16px;
+}
+.course-cell .course-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+.course-meta {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+}
+.status-ongoing { color: #1aad19; } /* Green */
+.status-completed { color: #007aff; } /* Blue */
+.status-archived { color: #888; } /* Grey */
+
+.progress-bar-container {
+     margin-top: 5px;
+     margin-bottom: 2px; /* Ensure it doesn't touch cell bottom line */
+}
+.refresh-button {
+  margin: 20px 16px 0; /* Add some top margin */
+  background-color: #f0f0f0;
+}

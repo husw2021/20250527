@@ -1,0 +1,82 @@
+/* minglu_cloud_badge/miniprogram/pages/badge-list/index.wxss */
+   .container { padding-bottom: 20px; }
+   .controls-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 16px;
+     background-color: #fff;
+     border-bottom: 1px solid #f0f0f0;
+   }
+   .create-badge-btn {
+     /* width: auto; */ /* Let it size by content */
+   }
+   .category-filter-picker {
+     /* flex-grow: 1; */
+     /* margin-left: 15px; */
+     padding: 8px 10px;
+     border: 1px solid #eee;
+     border-radius: 4px;
+     font-size: 14px;
+     color: #555;
+   }
+   .picker-display {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+   }
+   .loading-state, .empty-state { text-align: center; padding: 40px 20px; color: #888; }
+   .loading-text { margin-top: 10px; font-size: 14px; }
+   .empty-image { width: 100px; height: 100px; margin-bottom: 15px; }
+   .empty-text { font-size: 14px; }
+
+   .badge-grid {
+     display: flex;
+     flex-wrap: wrap;
+     padding: 10px; /* Padding around the grid */
+     gap: 10px; /* Space between items */
+   }
+   .badge-item {
+     width: calc(50% - 5px); /* Two items per row, accounting for gap */
+     background-color: #fff;
+     border-radius: 8px;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+     padding: 10px;
+     box-sizing: border-box;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+   }
+   .badge-item.expiring-soon {
+     border: 2px solid #e6a23c; /* Highlight color for expiring */
+   }
+   .badge-image {
+     width: 80px;
+     height: 80px;
+     margin-bottom: 8px;
+     border-radius: 4px; /* Or 50% for circular badges */
+     background-color: #f0f0f0; /* Placeholder bg */
+   }
+   .badge-title {
+     font-size: 15px;
+     font-weight: bold;
+     color: #333;
+     margin-bottom: 4px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     width: 100%;
+   }
+   .badge-category {
+     font-size: 12px;
+     color: #777;
+     margin-bottom: 4px;
+   }
+   .badge-expiry {
+     font-size: 11px;
+     color: #e6a23c;
+     display: flex;
+     align-items: center;
+   }
+   .refresh-button { margin: 20px 16px 0; background-color: #f0f0f0; }

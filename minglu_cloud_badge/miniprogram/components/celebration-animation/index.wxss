@@ -1,0 +1,84 @@
+/* minglu_cloud_badge/miniprogram/components/celebration-animation/index.wxss */
+   .animation-container {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+     z-index: 1000; /* Ensure it's on top */
+     pointer-events: none; /* Allow clicks to pass through overlay if needed, or set to 'auto' to block */
+     opacity: 0;
+     animation: fadeInOverlay 0.3s ease-out forwards;
+   }
+
+   @keyframes fadeInOverlay {
+     to { opacity: 1; }
+   }
+
+   .success-message {
+     font-size: 24px;
+     color: white;
+     font-weight: bold;
+     padding: 10px 20px;
+     background-color: rgba(0,0,0,0.5);
+     border-radius: 8px;
+     text-align: center;
+     animation: popInMessage 0.5s 0.2s ease-out forwards;
+     opacity: 0;
+     transform: scale(0.5);
+   }
+   @keyframes popInMessage {
+        0% { opacity: 0; transform: scale(0.5); }
+        70% { opacity: 1; transform: scale(1.1); }
+        100% { opacity: 1; transform: scale(1); }
+   }
+
+
+   .particle-group {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 1px; /* Small origin point */
+     height: 1px;
+   }
+
+   .particle {
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     border-radius: 50%; /* Simple circles */
+     opacity: 0;
+     animation-name: burstAndFade;
+     animation-duration: 2s; /* Total time for one particle's animation */
+     animation-timing-function: ease-out;
+     animation-fill-mode: forwards; /* Keep final state (opacity 0) */
+   }
+
+   @keyframes burstAndFade {
+     0% {
+       transform: translate(0, 0) scale(0.5);
+       opacity: 1;
+     }
+     50% { /* Mid-point, expand and start fading */
+       opacity: 0.8;
+     }
+     100% { /* End-point, further away, scaled up slightly, and faded */
+       transform: translate(var(--tx), var(--ty)) scale(1.2);
+       opacity: 0;
+     }
+   }
+
+   /* Define different paths and colors for particles */
+   .p1 { background-color: #ffcc00; --tx: 0px; --ty: -80px; animation-delay: 0s; }
+   .p2 { background-color: #ff6666; --tx: 60px; --ty: -60px; animation-delay: 0.1s; }
+   .p3 { background-color: #66ccff; --tx: 80px; --ty: 0px; animation-delay: 0.2s; }
+   .p4 { background-color: #99ff99; --tx: 60px; --ty: 60px; animation-delay: 0.3s; }
+   .p5 { background-color: #ff99cc; --tx: 0px; --ty: 80px; animation-delay: 0.4s; }
+   .p6 { background-color: #cc99ff; --tx: -60px; --ty: 60px; animation-delay: 0.5s; }
+   .p7 { background-color: #ffddaa; --tx: -80px; --ty: 0px; animation-delay: 0.6s; }
+   .p8 { background-color: #aaffee; --tx: -60px; --ty: -60px; animation-delay: 0.7s; }

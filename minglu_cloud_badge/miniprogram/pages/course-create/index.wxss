@@ -1,0 +1,14 @@
+/* minglu_cloud_badge/miniprogram/pages/course-create/index.wxss */
+.picker-placeholder {
+  color: #888888; /* Standard placeholder color */
+}
+.weui-input { /* Ensure input takes full cell width */
+    width: 100%; 
+    text-align: right; /* Align text to right for picker values */
+}
+.description-cell .weui-cell__bd { /* Allow textarea to span more width */
+    padding-right: 0;
+}
+.weui-btn-area {
+    margin-top: 20px; /* Add some space before the button */
+}

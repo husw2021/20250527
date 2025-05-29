@@ -1,12 +1,12 @@
-# Technology Stack
+# 2. 技术栈
 
-## Backend
-- WeChat Cloud Development (云开发)
-  - Cloud Functions (Node.js environment)
-  - Cloud Database (JSON-based NoSQL database)
-  - Cloud Storage (for files like images, audio)
-
-## Frontend
-- WeChat Mini Program (WXML, WXSS, JavaScript)
-- WeUI (for UI components and styling)
-  - Provides a consistent look and feel with native WeChat UI.
+*   **前端**：
+    *   微信小程序原生开发 (WXML, WXSS, JavaScript)
+    *   WeUI WXSS (微信官方视觉标准组件库)
+*   **后端**：
+    *   微信小程序云开发
+        *   云函数 (Node.js)
+        *   云数据库 (NoSQL JSON 数据库)
+        *   云存储 (用于存储用户上传的图片等文件)
+*   **开发工具**：
+    *   微信开发者工具

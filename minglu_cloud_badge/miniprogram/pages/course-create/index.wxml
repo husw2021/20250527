@@ -1,0 +1,40 @@
+<!-- minglu_cloud_badge/miniprogram/pages/course-create/index.wxml -->
+<mp-form id="form" rules="{{formRules}}" models="{{formData}}">
+  <mp-cells title="Course Information">
+    <mp-cell prop="name" title="Name" ext-class="">
+      <input data-field="name" model:value="{{formData.name}}" bindinput="bindInputChange" placeholder="Enter course name" class="weui-input"/>
+    </mp-cell>
+    <mp-cell prop="instructor" title="Instructor" ext-class="">
+      <input data-field="instructor" model:value="{{formData.instructor}}" bindinput="bindInputChange" placeholder="Instructor (Optional)" class="weui-input"/>
+    </mp-cell>
+    <mp-cell title="Description" ext-class="description-cell">
+      <textarea data-field="description" value="{{formData.description}}" bindinput="bindInputChange" placeholder="Enter course description" style="height: 4.5em; width: 100%; padding-top:8px; padding-bottom:8px;" maxlength="500" />
+    </mp-cell>
+  </mp-cells>
+
+  <mp-cells title="Course Settings">
+    <mp-cell prop="startDate" title="Start Date" ext-class="">
+      <picker mode="date" value="{{formData.startDate}}" bindchange="bindDateChange">
+        <view class="weui-input {{formData.startDate ? '' : 'picker-placeholder'}}">
+          {{formData.startDate || 'Select start date'}}
+        </view>
+      </picker>
+    </mp-cell>
+    <mp-cell prop="period" title="Duration" ext-class="">
+      <picker mode="selector" value="{{periodIndex}}" range="{{periodOptions}}" range-key="label" bindchange="bindPeriodChange">
+        <view class="weui-input {{formData.period ? '' : 'picker-placeholder'}}">
+          {{formData.period ? formData.period + ' days' : 'Select duration'}}
+        </view>
+      </picker>
+    </mp-cell>
+  </mp-cells>
+
+  <!-- Placeholder for Cover Image Uploader if desired later -->
+  <!-- <mp-cells title="Cover Image (Optional)">
+     <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" max-count="1" title="Upload Image"></mp-uploader>
+  </mp-cells> -->
+
+  <view class="weui-btn-area" style="padding: 16px;">
+    <button type="primary" bindtap="submitCourse">Create Course</button>
+  </view>
+</mp-form>
