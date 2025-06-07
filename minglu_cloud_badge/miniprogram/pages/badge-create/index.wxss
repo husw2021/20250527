@@ -1,0 +1,14 @@
+/* minglu_cloud_badge/miniprogram/pages/badge-create/index.wxss */
+.picker-placeholder { color: #888888; }
+.weui-input { width: 100%; text-align: right; }
+.description-cell .weui-cell__bd { padding-right: 0; }
+.switch-cell .weui-cell__ft { /* WeUI switch is usually in ft */
+    align-self: center; /* Align switch vertically if cell is taller */
+}
+.uploader-tips {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    text-align: center; /* Or align with uploader */
+}
+/* Ensure mp-uploader's default styles are sufficient or add custom ones */

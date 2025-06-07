@@ -1,0 +1,34 @@
+<!-- minglu_cloud_badge/miniprogram/pages/friend-profile/index.wxml -->
+<view class="container">
+  <view wx:if="{{isLoadingProfile || isLoadingCourses}}" class="loading-state">
+    <mp-loading type="circle"></mp-loading>
+    <view>Loading friend's details...</view>
+  </view>
+
+  <block wx:if="{{!isLoadingProfile && friendInfo}}">
+    <view class="profile-header">
+      <image class="avatar" src="{{friendInfo.avatarUrl || '/images/default-avatar.png'}}" mode="cover"></image>
+      <view class="nickname">{{friendInfo.nickName || 'Friend'}}</view>
+      <!-- Potentially display other non-sensitive info -->
+    </view>
+
+    <mp-cells title="{{friendInfo.nickName}}'s Courses" wx:if="{{friendCourses.length > 0}}">
+      <mp-cell wx:for="{{friendCourses}}" wx:key="_id" class="course-cell">
+        <view slot="title" class="course-title">{{item.name}}</view>
+        <view class="course-meta">Status: <text class="status-{{item.status}}">{{item.statusFormatted}}</text></view>
+        <view class="course-meta">Duration: {{item.period}} days</view>
+        <view class="course-meta" wx:if="{{item.formattedEndDate}}">Ends: {{item.formattedEndDate}}</view>
+        <view class="progress-bar-container" wx:if="{{item.status === 'ongoing'}}">
+            <progress percent="{{item.progressPercent || 0}}" stroke-width="6" activeColor="#1aad19"></progress>
+        </view>
+      </mp-cell>
+    </mp-cells>
+    <view wx:if="{{!isLoadingCourses && friendCourses.length === 0}}" class="empty-state" style="margin-top: 20px;">
+      {{friendInfo.nickName}} has no courses or they are private.
+    </view>
+  </block>
+  
+  <view wx:if="{{!isLoadingProfile && !friendInfo}}" class="empty-state">
+    Could not load friend's profile.
+  </view>
+</view>

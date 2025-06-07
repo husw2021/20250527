@@ -1,0 +1,38 @@
+/* minglu_cloud_badge/miniprogram/pages/badge-detail/index.wxss */
+   .container { padding-bottom: 20px; }
+   .badge-header {
+     text-align: center;
+     padding: 20px 16px;
+     margin-bottom: 10px;
+     background-color: #f8f8f8; /* Default */
+     border-bottom: 1px solid #eee;
+   }
+   .badge-header.expiring-header {
+     background-color: #fff3e0; /* Light orange for expiring soon header */
+     border-bottom-color: #ffe0b2;
+   }
+   .badge-image-large {
+     width: 120px;
+     height: 120px;
+     margin-bottom: 15px;
+     border-radius: 8px; /* Or 50% for circular */
+     border: 2px solid #fff;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+     background-color: #e0e0e0; /* Placeholder bg */
+   }
+   .badge-title-large {
+     font-size: 22px;
+     font-weight: bold;
+     color: #333;
+     margin-bottom: 5px;
+   }
+   .badge-category-detail {
+     font-size: 14px;
+     color: #777;
+   }
+   .cell-value { color: #555; font-size: 15px; padding-left: 10px; white-space: pre-wrap; }
+   .expiry-date-value.expiring-text { color: #e6a23c; font-weight: bold; }
+   .mp-cells { margin-top: 10px; }
+   .actions-section { padding: 16px; margin-top: 20px; }
+   .actions-section button { width: 100%; }
+   .loading-state, .empty-state { text-align: center; padding: 50px 20px; color: #888; }

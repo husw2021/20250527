@@ -1,0 +1,52 @@
+<!-- minglu_cloud_badge/miniprogram/pages/badge-detail/index.wxml -->
+<view class="container" wx:if="{{!isLoading && badge}}">
+  <view class="badge-header {{badge.isExpiringSoon ? 'expiring-header' : ''}}">
+    <image class="badge-image-large" src="{{badge.imageFileId}}" mode="aspectFit"></image>
+    <view class="badge-title-large">{{badge.title}}</view>
+    <view class="badge-category-detail">Category: {{badge.categoryName || 'Uncategorized'}}</view>
+  </view>
+
+  <mp-cells title="Badge Information">
+    <mp-cell wx:if="{{badge.description}}">
+      <view slot="title">Description</view>
+      <view class="cell-value">{{badge.description}}</view>
+    </mp-cell>
+    <mp-cell>
+      <view slot="title">Issue Date</view>
+      <view class="cell-value">{{badge.formattedIssueDate}}</view>
+    </mp-cell>
+    <mp-cell wx:if="{{badge.formattedExpiryDate}}">
+      <view slot="title">Expiry Date</view>
+      <view class="cell-value expiry-date-value {{badge.isExpiringSoon ? 'expiring-text' : ''}}">
+        {{badge.formattedExpiryDate}}
+        <mp-icon wx:if="{{badge.isExpiringSoon}}" icon="warn" color="#e6a23c" size="16" style="margin-left: 8px;"></mp-icon>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view slot="title">Reminder Enabled</view>
+      <switch slot="footer" checked="{{badge.reminderEnabled}}" bindchange="onReminderSwitchChange"></switch>
+    </mp-cell>
+    <!-- Display customProperties if any and if desired -->
+    <mp-cell wx:if="{{badge.customProperties &&  Object.keys(badge.customProperties).length > 0}}">
+         <view slot="title">Custom Properties</view>
+         <view class="cell-value">
+             <block wx:for="{{badge.customProperties}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+                 <view>{{key}}: {{value}}</view>
+             </block>
+         </view>
+    </mp-cell>
+  </mp-cells>
+
+  <view class="actions-section">
+    <button type="primary" bindtap="editBadge">Edit Badge</button>
+    <button type="warn" bindtap="deleteBadgeConfirm" style="margin-top: 10px;">Delete Badge</button>
+  </view>
+</view>
+
+<view wx:if="{{isLoading}}" class="loading-state">
+  <mp-loading type="circle"></mp-loading>
+  <view>Loading badge details...</view>
+</view>
+<view wx:if="{{!isLoading && !badge}}" class="empty-state">
+  Badge not found or access denied.
+</view>

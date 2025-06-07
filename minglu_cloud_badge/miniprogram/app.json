@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/course-list/index",
+    "pages/course-detail/index",
+    "pages/course-create/index",
+    "pages/punchcard/index",
+    "pages/badge-list/index",
+    "pages/badge-detail/index",
+    "pages/badge-create/index",
+    "pages/common-punchcard/index",
+    "pages/user-profile/index",
+    "pages/friend-profile/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Minglu Cloud Badge",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

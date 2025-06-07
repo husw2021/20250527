@@ -1,0 +1,54 @@
+<!-- minglu_cloud_badge/miniprogram/pages/badge-create/index.wxml -->
+<mp-form id="badgeForm" rules="{{formRules}}" models="{{formData}}">
+  <mp-cells title="Badge Details">
+    <mp-cell prop="title" title="Title" ext-class="">
+      <input data-field="title" model:value="{{formData.title}}" bindinput="bindInputChange" placeholder="Enter badge title" class="weui-input"/>
+    </mp-cell>
+    <mp-cell prop="categoryId" title="Category" ext-class="">
+      <picker mode="selector" value="{{categoryIndex}}" range="{{badgeCategories}}" range-key="name" bindchange="bindCategoryChange">
+        <view class="weui-input {{formData.categoryId ? '' : 'picker-placeholder'}}">
+          {{selectedCategoryName || 'Select category'}}
+        </view>
+      </picker>
+    </mp-cell>
+    <mp-cell title="Description" ext-class="description-cell">
+      <textarea data-field="description" value="{{formData.description}}" bindinput="bindInputChange" placeholder="Badge description (optional)" style="height: 4.5em; width: 100%; padding-top:8px; padding-bottom:8px;" maxlength="500" />
+    </mp-cell>
+  </mp-cells>
+
+  <mp-cells title="Image">
+     <mp-cell>
+         <view slot="title">Badge Image</view>
+         <mp-uploader 
+             bindfail="onUploadError" 
+             bindsuccess="onUploadSuccess"
+             binddelete="onUploadDelete"
+             max-count="1" 
+             title="Image" 
+             files="{{uploadedFiles}}"
+             data-field="imageFileId"
+             select="{{selectImage}}"
+             upload="{{uploadImageFuncForUploader}}"
+         ></mp-uploader>
+         <view class="uploader-tips" wx:if="{{!formData.imageFileId}}">Please upload an image for the badge.</view>
+     </mp-cell>
+  </mp-cells>
+
+  <mp-cells title="Optional Settings">
+    <mp-cell title="Expiry Date" ext-class="">
+      <picker mode="date" value="{{formData.expiryDate}}" bindchange="bindDateChange" data-field="expiryDate" start="{{todayDate}}">
+        <view class="weui-input {{formData.expiryDate ? '' : 'picker-placeholder'}}">
+          {{formData.expiryDate || 'Optional: Select expiry date'}}
+        </view>
+      </picker>
+    </mp-cell>
+    <mp-cell title="Enable Reminder" ext-class="switch-cell">
+      <switch checked="{{formData.reminderEnabled}}" bindchange="bindSwitchChange" data-field="reminderEnabled"></switch>
+    </mp-cell>
+    <!-- Custom Properties could be a more complex UI later, for now not included -->
+  </mp-cells>
+
+  <view class="weui-btn-area" style="padding: 16px; margin-top: 20px;">
+    <button type="primary" bindtap="submitBadge" disabled="{{isSubmitting}}">{{isSubmitting ? 'Creating...' : 'Create Badge'}}</button>
+  </view>
+</mp-form>

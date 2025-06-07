@@ -1,0 +1,15 @@
+<!-- minglu_cloud_badge/miniprogram/components/celebration-animation/index.wxml -->
+   <view class="animation-container" wx:if="{{show}}">
+     <!-- Example: Simple "confetti" like particles using CSS -->
+     <view class="particle-group">
+       <view class="particle p1"></view>
+       <view class="particle p2"></view>
+       <view class="particle p3"></view>
+       <view class="particle p4"></view>
+       <view class="particle p5"></view>
+       <view class="particle p6"></view>
+       <view class="particle p7"></view>
+       <view class="particle p8"></view>
+     </view>
+     <view class="success-message">{{message}}</view>
+   </view>

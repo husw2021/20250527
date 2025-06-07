@@ -1,0 +1,35 @@
+<!-- minglu_cloud_badge/miniprogram/pages/course-list/index.wxml -->
+<view class="container">
+  <view style="padding: 16px;">
+     <button type="primary" bindtap="navigateToCreateCourse">Create New Course</button>
+  </view>
+
+  <view wx:if="{{isLoading}}" class="loading-state">
+     <mp-loading type="circle"></mp-loading>
+     <view class="loading-text">Loading courses...</view>
+  </view>
+  
+  <view wx:if="{{!isLoading && courses.length === 0}}" class="empty-state">
+    <image src="/images/empty-box.png" class="empty-image" mode="aspectFit"></image> 
+    <!-- Add a generic empty box image to /images/ folder -->
+    <view class="empty-text">No courses yet. Tap the button above to create your first one!</view>
+  </view>
+
+  <mp-slideview buttons="{{slideButtons}}" wx:if="{{!isLoading && courses.length > 0}}" class="course-list-slideview">
+     <mp-cells title="My Courses" footer="Swipe left for options">
+         <mp-cell wx:for="{{courses}}" wx:key="_id" bindtap="navigateToCourseDetail" data-courseid="{{item._id}}" class="course-cell">
+             <view slot="title" class="course-title">{{item.name}}</view>
+             <view class="course-meta">Status: <text class="status-{{item.status}}">{{item.status}}</text></view>
+             <view class="course-meta">Duration: {{item.period}} days</view>
+             <view class="course-meta">Ends: {{item.formattedEndDate}}</view>
+             <!-- Optional: Progress bar placeholder -->
+             <view class="progress-bar-container" wx:if="{{item.status === 'ongoing'}}">
+                 <progress percent="{{item.progressPercent || 0}}" stroke-width="6" activeColor="#1aad19"></progress>
+             </view>
+         </mp-cell>
+     </mp-cells>
+  </mp-slideview>
+
+  <!-- Refresh button for pull-down refresh, or a manual button -->
+  <button wx:if="{{!isLoading}}" bindtap="fetchCourses" class="refresh-button">Refresh Courses</button>
+</view>

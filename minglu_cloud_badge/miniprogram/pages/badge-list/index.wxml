@@ -1,0 +1,35 @@
+<!-- minglu_cloud_badge/miniprogram/pages/badge-list/index.wxml -->
+<view class="container">
+  <view class="controls-header">
+    <button type="primary" size="default" bindtap="navigateToCreateBadge" class="create-badge-btn">Create New Badge</button>
+    <picker mode="selector" value="{{categoryFilterIndex}}" range="{{badgeCategoriesForFilter}}" range-key="name" bindchange="bindCategoryFilterChange" class="category-filter-picker">
+      <view class="picker-display">
+        Category: {{selectedCategoryFilterName || 'All'}} <mp-icon icon="arrow" size="12" color="#888"></mp-icon>
+      </view>
+    </picker>
+  </view>
+
+  <view wx:if="{{isLoading}}" class="loading-state">
+    <mp-loading type="circle"></mp-loading>
+    <view class="loading-text">Loading badges...</view>
+  </view>
+
+  <view wx:if="{{!isLoading && badges.length === 0}}" class="empty-state">
+    <image src="/images/empty-badge.png" class="empty-image" mode="aspectFit"></image> 
+    <!-- Add a generic empty badge image to /images/ folder -->
+    <view class="empty-text">No badges yet. Create one to get started!</view>
+  </view>
+
+  <view class="badge-grid" wx:if="{{!isLoading && badges.length > 0}}">
+    <view wx:for="{{badges}}" wx:key="_id" class="badge-item {{item.isExpiringSoon ? 'expiring-soon' : ''}}" bindtap="navigateToBadgeDetail" data-badgeid="{{item._id}}">
+      <image class="badge-image" src="{{item.imageFileId}}" mode="aspectFit" lazy-load="true"></image>
+      <view class="badge-title">{{item.title}}</view>
+      <view class="badge-category">{{item.categoryName || 'Uncategorized'}}</view>
+      <view class="badge-expiry" wx:if="{{item.formattedExpiryDate}}">
+         Expires: {{item.formattedExpiryDate}}
+         <mp-icon wx:if="{{item.isExpiringSoon}}" icon="warn" color="#e6a23c" size="14" style="margin-left: 5px;"></mp-icon>
+      </view>
+    </view>
+  </view>
+  <button wx:if="{{!isLoading}}" bindtap="fetchBadgesData" class="refresh-button">Refresh Badges</button>
+</view>

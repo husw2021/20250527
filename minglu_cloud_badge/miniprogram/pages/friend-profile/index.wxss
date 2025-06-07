@@ -1,0 +1,12 @@
+/* minglu_cloud_badge/miniprogram/pages/friend-profile/index.wxss */
+.container { padding-bottom: 20px; }
+.profile-header { text-align: center; padding: 20px; background-color: #f0f0f0; margin-bottom:10px;}
+.avatar { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; }
+.nickname { font-size: 18px; font-weight: bold; }
+.loading-state, .empty-state { text-align: center; padding: 40px 20px; color: #888; }
+.course-cell .course-title { font-size: 16px; font-weight: bold; }
+.course-meta { font-size: 13px; color: #666; }
+.status-ongoing { color: #1aad19; }
+.status-completed { color: #007aff; }
+.status-archived { color: #888; }
+.progress-bar-container { margin-top: 5px; }

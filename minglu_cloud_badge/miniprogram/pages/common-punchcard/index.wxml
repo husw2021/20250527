@@ -1,0 +1,108 @@
+<!-- minglu_cloud_badge/miniprogram/pages/common-punchcard/index.wxml -->
+<view class="container">
+  <!-- Check-in Type Selector -->
+  <view class="checkin-type-selector">
+    <button class="type-button {{currentCheckInType === 'log' ? 'active' : ''}}" data-type="log" bindtap="onTypeChange">Log</button>
+    <button class="type-button {{currentCheckInType === 'photo' ? 'active' : ''}}" data-type="photo" bindtap="onTypeChange">Photo</button>
+    <button class="type-button {{currentCheckInType === 'audio' ? 'active' : ''}}" data-type="audio" bindtap="onTypeChange">Audio</button>
+    <button class="type-button {{currentCheckInType === 'mood' ? 'active' : ''}}" data-type="mood" bindtap="onTypeChange">Mood</button>
+  </view>
+
+  <!-- Form Section -->
+  <mp-form id="commonCheckInForm" class="form-section">
+    <!-- Log Type -->
+    <mp-cells title="Log Entry" wx:if="{{currentCheckInType === 'log'}}">
+      <mp-cell>
+        <textarea class="notes-textarea" value="{{formData.textContent}}" bindinput="bindFormInputChange" data-field="textContent" placeholder="Write your thoughts or log..." maxlength="1000"></textarea>
+      </mp-cell>
+    </mp-cells>
+
+    <!-- Photo Type -->
+    <mp-cells title="Upload Photo" wx:if="{{currentCheckInType === 'photo'}}" class="uploader-cell">
+      <mp-uploader 
+        bindfail="onUploadError" 
+        bindsuccess="onUploadSuccess"
+        binddelete="onUploadDelete"
+        max-count="1" 
+        title="Image" 
+        files="{{uploadedImageFiles}}"
+        upload="{{uploadImageFuncForUploader}}"
+      ></mp-uploader>
+    </mp-cells>
+
+    <!-- Audio Type -->
+    <mp-cells title="Record Audio" wx:if="{{currentCheckInType === 'audio'}}">
+       <mp-cell>
+           <button size="mini" bindtap="toggleRecording" type="{{isRecording ? 'warn' : 'default'}}">
+               {{isRecording ? 'Stop Recording' : (tempAudioFilePath ? 'Re-record' : 'Start Recording')}}
+           </button>
+           <view wx:if="{{tempAudioFilePath}}" class="audio-player">
+               <text style="flex-grow:1;">{{audioDurationFormatted}}</text>
+               <button size="mini" bindtap="playAudio" type="primary" wx:if="{{!isPlayingAudio}}">Play</button>
+               <button size="mini" bindtap="stopAudio" type="default" wx:if="{{isPlayingAudio}}">Stop</button>
+           </view>
+       </mp-cell>
+    </mp-cells>
+
+    <!-- Mood Type -->
+    <mp-cells title="Select Mood" wx:if="{{currentCheckInType === 'mood'}}">
+      <view class="mood-selector">
+        <text wx:for="{{moodOptions}}" wx:key="item" 
+              class="mood-option {{formData.mood === item ? 'selected' : ''}}" 
+              data-mood="{{item}}" bindtap="onMoodSelect">{{item}}</text>
+      </view>
+      <mp-cell wx:if="{{formData.mood}}"> <!-- Optional notes for mood -->
+        <textarea class="notes-textarea" style="height:3em;" value="{{formData.textContent}}" bindinput="bindFormInputChange" data-field="textContent" placeholder="Any notes for this mood? (Optional)" maxlength="200"></textarea>
+      </mp-cell>
+    </mp-cells>
+    
+    <!-- Common Fields: Tags & Location (Optional) -->
+    <mp-cells title="Additional Info (Optional)">
+        <mp-cell title="Tags">
+            <input class="weui-input" value="{{tagsInput}}" bindinput="bindTagsInput" placeholder="e.g., work, personal, idea (comma separated)"/>
+        </mp-cell>
+        <!-- Location input can be more complex, e.g., using wx.chooseLocation -->
+    </mp-cells>
+
+    <view class="weui-btn-area" style="padding: 16px; margin-top:20px;">
+      <button type="primary" bindtap="submitCommonCheckIn" loading="{{isSubmitting}}">Submit Check-in</button>
+    </view>
+  </mp-form>
+  
+  <celebration-animation 
+      show="{{showSuccessAnimation}}" 
+      bind:animationend="handleAnimationEnd" 
+      message="{{successMessage}}">
+  </celebration-animation>
+
+  <!-- Check-in History Section -->
+  <view class="history-title">Recent Check-ins</view>
+  <view wx:if="{{isLoadingHistory}}" class="loading-state">
+    <mp-loading type="circle"></mp-loading>
+    <view>Loading history...</view>
+  </view>
+  <view wx:if="{{!isLoadingHistory && checkInHistory.length === 0}}" class="empty-state">
+    <image src="/images/empty-common-checkin.png" class="empty-image" mode="aspectFit"></image>
+    <view>No general check-ins recorded yet.</view>
+  </view>
+
+  <block wx:if="{{!isLoadingHistory && checkInHistory.length > 0}}">
+    <mp-cells wx:for="{{checkInHistory}}" wx:key="_id" class="history-item">
+      <mp-cell>
+        <view class="history-item-header">
+          <text class="history-item-type">{{item.checkInType}}</text>
+          <text class="history-item-time">{{item.formattedPunchDateTime}}</text>
+        </view>
+        <view wx:if="{{item.textContent}}" class="history-item-content-text">{{item.textContent}}</view>
+        <view wx:if="{{item.checkInType === 'mood' && item.mood}}" class="history-item-mood">Mood: {{item.mood}}</view>
+        <image wx:if="{{item.checkInType === 'photo' && item.imageFileId}}" 
+               src="{{item.imageFileId}}" class="history-item-image" mode="aspectFill" lazy-load="true"></image>
+        <!-- Add audio player for history item.checkInType === 'audio' if needed -->
+        <view class="history-item-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+            <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index" class="tag">{{tag}}</text>
+        </view>
+      </mp-cell>
+    </mp-cells>
+    <button wx:if="{{pagination.currentPage < pagination.totalPages}}" bindtap="loadMoreHistory" class="load-more-btn">Load More</button>
+  </block>
+</view>

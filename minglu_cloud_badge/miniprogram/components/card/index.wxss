@@ -1,0 +1,43 @@
+/* minglu_cloud_badge/miniprogram/components/card/index.wxss */
+   .custom-card {
+     background-color: #ffffff;
+     border-radius: 8px; /* Standardized border radius */
+     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08); /* Standardized shadow */
+     margin: 12px; /* Default margin around the card */
+     overflow: hidden; /* Ensures content respects border radius */
+   }
+
+   .card-header {
+     padding: 12px 16px;
+     font-size: 16px; /* Slightly larger for title */
+     font-weight: bold;
+     color: #333333; /* Darker color for title */
+   }
+
+   .card-header-bordered {
+     border-bottom: 1px solid #f0f0f0; /* Light border for separation */
+   }
+
+   .card-title {
+     /* Specific title styling if needed beyond header scope */
+   }
+
+   .card-body {
+     padding: 16px; /* Default padding for card content */
+     font-size: 14px;
+     color: #555555;
+   }
+
+   .card-footer {
+     padding: 10px 16px;
+     border-top: 1px solid #f0f0f0; /* Light border for footer separation */
+     font-size: 13px;
+     color: #777777;
+     /* display: flex; */ /* Uncomment if you want to use flex properties for footer items */
+     /* justify-content: flex-end; */ /* Example: align footer items to the right */
+   }
+   
+   /* Example: If footer is empty, it shouldn't take up space due to padding */
+   .card-footer:empty {
+        display: none;
+   }

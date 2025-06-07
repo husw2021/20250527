@@ -1,0 +1,175 @@
+/* minglu_cloud_badge/miniprogram/pages/course-detail/index.wxss */
+.page-container { /* New overall container for the page content */
+  padding: 0 0 20px 0; /* Remove side padding if cards have their own margins */
+}
+/* Header styles remain largely the same */
+.header-card {
+  background-color: #f0f0f0; /* Default, can be themed */
+  padding: 20px 16px;
+  /* margin-bottom: 10px; */ /* Replaced by card default margin */
+  text-align: center;
+  margin: 0; /* Remove margin if it's a full-width header before cards */
+  border-radius: 0; /* Full width header might not need border-radius */
+  box-shadow: none; /* Optional: remove shadow for header if cards have them */
+  margin-bottom: 12px; /* Space before the first card */
+}
+.header-card.completed-card {
+  background-color: #e0ffe0; /* Light green for completed */
+}
+.course-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+.course-instructor {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+.course-status {
+  font-size: 14px;
+  font-weight: bold;
+}
+.status-ongoing { color: #1aad19; }
+.status-completed { color: #007aff; }
+.status-archived { color: #888; }
+
+/* Card specific styling adjustments */
+/* .details-card, .progress-card, .rewards-card, .checkin-history-card will use default card margin */
+
+.detail-item {
+  display: flex;
+  padding: 6px 0; /* Vertical padding for each item */
+  font-size: 15px;
+}
+.detail-label {
+  width: 100px; /* Adjust as needed */
+  color: #555; /* Changed from #333 to #555 to match spec */
+  margin-right: 10px;
+  font-weight: bold;
+}
+.detail-value {
+  flex: 1;
+  color: #333; /* Changed from #555 to #333 to match spec */
+  white-space: pre-wrap;
+}
+.description-value { /* Specific styling for description if it's long */
+   line-height: 1.6;
+}
+
+/* Progress section already has its own styles, ensure they fit well in a card */
+.progress-section { /* padding: 10px 0; (padding is now in card-body) */ }
+.progress-text {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.progress-subtext {
+  font-size: 13px;
+  color: #888;
+  margin-top: 5px;
+  text-align: center;
+}
+
+
+/* Actions section styles remain */
+.actions-section { 
+  padding: 16px; /* Keep padding if it's outside a card */
+  margin-top: 0; /* Card will provide its own top margin */
+}
+.actions-section button {
+  width: 100%;
+}
+.checked-in-today {
+  text-align: center;
+  color: #1aad19;
+  font-weight: bold;
+  padding: 15px;
+  background-color: #f0fff0;
+  border-radius: 5px;
+  border: 1px solid #d0f0d0;
+}
+
+/* Reward item styling for within a card */
+.reward-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0; /* Vertical padding between reward items */
+  border-bottom: 1px solid #f5f5f5;
+}
+.reward-item:last-child {
+  border-bottom: none;
+}
+.reward-icon {
+  margin-right: 12px;
+}
+.reward-info {
+  flex: 1;
+}
+.reward-description {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+.reward-value {
+  font-size: 13px;
+  color: #555;
+  margin: 3px 0;
+}
+.reward-status {
+  font-size: 12px;
+}
+.status-claimed {
+  color: #1aad19; /* Green */
+}
+.status-pending {
+  color: #fa9d3b; /* Orange/Yellow */
+}
+
+/* Check-in history item styling for within a card */
+.checkin-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+.checkin-item:last-child {
+  border-bottom: none;
+}
+.checkin-date {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.checkin-notes {
+  font-size: 14px;
+  color: #777;
+  white-space: pre-wrap; /* Allow notes to wrap */
+}
+
+/* Loading/Empty states for sections within cards or standalone */
+.card-padding { /* Utility to add padding similar to card-body for messages outside cards */
+   padding: 16px;
+   text-align: center; /* Center these messages */
+}
+.small-loading, .empty-rewards-history, .empty-checkin-history { 
+     /* text-align: center; is good, padding already handled by card-padding or card body */
+     /* These classes are applied to views that are siblings to cards, so card-padding is appropriate */
+}
+.loading-text-small {
+  font-size: 14px;
+  color: #aaa;
+  margin-left: 8px; /* Space between loading icon and text */
+}
+   
+/* Page level loading/empty states */
+.page-loading-state, .page-empty-state { /* Renamed for clarity */
+  text-align: center; 
+  padding: 50px 20px; 
+  color: #888; 
+}
+
+/* Remove mp-cells specific margins if they were affecting layout, */
+/* custom-card has its own margin. */
+.mp-cells {
+  margin-top: 0; /* Override default WeUI margin if custom-card is used */
+}

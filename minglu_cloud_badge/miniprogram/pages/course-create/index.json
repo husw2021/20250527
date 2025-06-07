@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-uploader": "weui-miniprogram/uploader/uploader"
+    // "mp-button" is native-like, not always needed in usingComponents
+  },
+  "navigationBarTitleText": "Create New Course"
+}

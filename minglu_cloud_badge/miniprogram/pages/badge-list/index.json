@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-loading": "weui-miniprogram/loading/loading"
+  },
+  "navigationBarTitleText": "My Badges",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,83 @@
+<!-- minglu_cloud_badge/miniprogram/pages/course-detail/index.wxml -->
+   <view class="page-container" wx:if="{{!isLoading && course}}">
+     <view class="header-card {{course.status === 'completed' ? 'completed-card' : ''}}">
+       <view class="course-name">{{course.name}}</view>
+       <view class="course-instructor" wx:if="{{course.instructor}}">Instructor: {{course.instructor}}</view>
+       <view class="course-status status-{{course.status}}">{{course.statusFormatted || course.status}}</view>
+     </view>
+
+     <custom-card title="Course Details" customClass="details-card">
+       <view class="detail-item">
+         <text class="detail-label">Description:</text>
+         <text class="detail-value description-value">{{course.description || 'No description provided.'}}</text>
+       </view>
+       <view class="detail-item">
+         <text class="detail-label">Duration:</text>
+         <text class="detail-value">{{course.period}} days</text>
+       </view>
+       <view class="detail-item">
+         <text class="detail-label">Start Date:</text>
+         <text class="detail-value">{{course.formattedStartDate}}</text>
+       </view>
+       <view class="detail-item">
+         <text class="detail-label">End Date:</text>
+         <text class="detail-value">{{course.formattedEndDate}}</text>
+       </view>
+     </custom-card>
+
+     <custom-card title="Progress" customClass="progress-card">
+       <view class="progress-section">
+         <view class="progress-text">{{course.daysCompleted}} / {{course.period}} days completed</view>
+         <progress percent="{{course.progressPercent}}" stroke-width="8" activeColor="#1aad19" border-radius="4" style="margin-top: 5px;"></progress>
+         <view class="progress-subtext" wx:if="{{course.daysRemaining > 0 && course.status === 'ongoing'}}">{{course.daysRemaining}} days remaining</view>
+         <view class="progress-subtext" wx:if="{{course.status === 'completed'}}">Congratulations on completing the course!</view>
+       </view>
+     </custom-card>
+     
+     <view class="actions-section">
+       <button type="primary" wx:if="{{course.status === 'ongoing' && !isCheckedInToday}}" bindtap="navigateToPunchcard">Check-in for Today</button>
+       <view wx:if="{{course.status === 'ongoing' && isCheckedInToday}}" class="checked-in-today">Checked in for today! 🎉</view>
+     </view>
+
+     <custom-card title="Course Rewards" wx:if="{{rewards.length > 0}}" customClass="rewards-card">
+        <view wx:for="{{rewards}}" wx:key="_id" class="reward-item {{item.isClaimed ? 'claimed' : 'unclaimed'}}">
+            <mp-icon wx:if="{{item.icon}}" type="{{item.icon}}" size="20" color="{{item.isClaimed ? '#1aad19' : '#888'}}" class="reward-icon"></mp-icon>
+            <view class="reward-info">
+              <view class="reward-description">{{item.description}}</view>
+              <view class="reward-value">Value: {{item.rewardValue}}</view>
+              <view class="reward-status {{item.isClaimed ? 'status-claimed' : 'status-pending'}}">
+                  Status: {{item.statusText}}
+              </view>
+            </view>
+        </view>
+     </custom-card>
+     <view wx:if="{{!isLoadingRewards && rewards.length === 0 && course}}" class="empty-rewards-history card-padding">
+       No specific rewards defined or earned for this course yet.
+     </view>
+     <view wx:if="{{isLoadingRewards}}" class="loading-state small-loading card-padding">
+       <mp-loading type="circle" size="20"></mp-loading>
+       <view class="loading-text-small">Loading rewards...</view>
+     </view>
+
+     <custom-card title="Check-in History" wx:if="{{checkIns.length > 0}}" customClass="checkin-history-card">
+        <view wx:for="{{checkIns}}" wx:key="_id" class="checkin-item">
+            <view class="checkin-date">{{item.formattedPunchDate}}</view>
+            <view class="checkin-notes">{{item.notes || 'No notes.'}}</view>
+        </view>
+     </custom-card>
+     <view wx:if="{{!isLoadingCheckIns && checkIns.length === 0 && course && course.status === 'ongoing'}}" class="empty-checkin-history card-padding">
+       No check-ins recorded yet for this course.
+     </view>
+     <view wx:if="{{isLoadingCheckIns}}" class="loading-state small-loading card-padding">
+       <mp-loading type="circle" size="20"></mp-loading>
+       <view class="loading-text-small">Loading history...</view>
+     </view>
+
+   </view>
+   <view wx:if="{{isLoading}}" class="loading-state page-loading-state">
+     <mp-loading type="circle"></mp-loading>
+     <view>Loading course details...</view>
+   </view>
+   <view wx:if="{{!isLoading && !course}}" class="empty-state page-empty-state">
+     Course not found or access denied.
+   </view>
